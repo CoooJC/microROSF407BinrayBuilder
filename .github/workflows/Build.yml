@@ -31,6 +31,10 @@ jobs:
           chmod u+x $(pwd)/micro_ros_stm32cubemx_utils/microros_static_library/library_generation/library_generation.sh
           docker run --rm -v $(pwd):/project --env MICROROS_LIBRARY_FOLDER=micro_ros_stm32cubemx_utils/microros_static_library microros/micro_ros_static_library_builder:jazzy
 
+      - name: Clean Zone.Identifier files
+        run: |
+          find ${{ github.workspace }}/micro_ros_stm32cubemx_utils -name "*:Zone.Identifier" -type f -delete
+      
       - name: Artifact
         uses: actions/upload-artifact@v4
         with:
